@@ -1,25 +1,24 @@
 <template>
     <div class="w-full px-4 pt-16">
-        <div class="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
-            <Disclosure v-slot="{ open }">
-                <DisclosureButton
-                    class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-                    <span>What is your refund policy?</span>
-                    <ChevronUpIcon :class="open ? 'rotate-180 transform' : ''" class="h-5 w-5 text-purple-500" />
+        <div class="mx-auto w-full max-w-3xl rounded-2xl p-2">
+            <Disclosure v-for="item in items" :key="item.id" v-slot="{ open }">
+                <DisclosureButton :class="[
+                    'flex w-full justify-between rounded-lg bg-[#222] mt-3 px-5 py-6 items-center text-left text-2xl font-medium text-white ',
+                    { 'bg-[#272727]': open }
+                ]">
+                    <span>{{ item.question }}</span>
+                    <span class="text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" :class="[
+                                'w-8 h-8 transform transition-transform duration-200',
+                                { 'rotate-45': open, 'rotate-0': !open }
+                            ]">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
                 </DisclosureButton>
-                <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
-                    If you're unhappy with your purchase for any reason, email us within
-                    90 days and we'll refund you in full, no questions asked.
-                </DisclosurePanel>
-            </Disclosure>
-            <Disclosure as="div" class="mt-2" v-slot="{ open }">
-                <DisclosureButton
-                    class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-                    <span>Do you offer technical support?</span>
-                    <ChevronUpIcon :class="open ? 'rotate-180 transform' : ''" class="h-5 w-5 text-purple-500" />
-                </DisclosureButton>
-                <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
-                    No.
+                <DisclosurePanel class="px-4 py-4 rounded-lg text-xl mt-1 bg-[#222] text-white">
+                    {{ item.answer }}
                 </DisclosurePanel>
             </Disclosure>
         </div>
@@ -29,4 +28,44 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { ChevronUpIcon } from '@heroicons/vue/20/solid'
+
+const items = [
+    {
+        id: 1,
+        question: 'What is Netflix?',
+        answer:
+            "Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices. You can watch as much as you want, whenever you want without a single commercial – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!"
+    },
+    {
+        id: 2,
+        question: 'How much does Netflix cost?',
+        answer:
+            "Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from ₦1,200 to ₦4,400 a month. No extra costs, no contracts."
+    },
+    {
+        id: 3,
+        question: 'where can i watch?',
+        answer:
+            "Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles. You can also download your favorite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere."
+    },
+    {
+        id: 4,
+        question: 'How do i cancel?',
+        answer:
+            "Netflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime."
+    },
+    {
+        id: 5,
+        question: 'What can i watch on Netflix?',
+        answer:
+            "Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want."
+    },
+    {
+        id: 6,
+        question: 'Is Netflix good for kids?',
+        answer:
+            "The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space. Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see."
+    },
+    // Add more items as needed
+];
 </script>

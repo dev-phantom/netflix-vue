@@ -12,6 +12,7 @@ export default {
         secondary: '#333',
         link: '#757575',
       },
+      
       fontFamily: {
         sans: ['Mulish', 'sans-serif'],
       },
